@@ -1,0 +1,46 @@
+<!-- index.html -->
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content_container %}
+<div class="col-md-12">
+	<h2>{{ pbllpage.title }}
+		{% if user.is_staff %}
+		<a href="{% url 'pbllpage_edit' slug=pbllpage.slug %}" class="btn btn-default btn-xs">edit</a>
+		{% endif %}
+	</h2>
+</div>
+
+<div class="col-md-12">{{ pbllpage.content|safe }}</div>
+
+
+<div class="col-md-12">
+	<h2>Modules</h2>
+	{% for i in modules %}
+		<div class="thumbnail blocks">
+		  
+			<div class="button">
+				{% if user.is_staff %}<a href="{% url 'module_edit' slug=i.slug %}" class="btn btn-default btn-xs pull-right">edit</a>{% endif %}
+				<legend>{{ i }}</legend>
+
+			</div>
+			{% for j in i.lessons.all %}
+				<div class="thumbnail">
+					{% if user.is_staff %}
+						<a href="{% url 'lesson_edit' slug=j.slug %}" class="btn btn-default btn-xs pull-right">edit</a>
+					{% endif %}
+
+					{% if user.is_staff or j.active %}
+						{% if j.active %}<small class="label label-success label-xs">&nbsp;&nbsp;</small>{% endif %}
+						<a class="button" href="{{ j.get_absolute_url }}">{{ j }}</a>
+					{% else %}
+						<p class="inactive_lesson">{{ j }}</p>
+					{% endif %}
+				</div>
+			{% endfor %}		
+		
+		</div>
+	{% endfor %}
+</div>
+
+{% endblock content_container %}
