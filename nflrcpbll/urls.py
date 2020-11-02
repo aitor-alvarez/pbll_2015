@@ -11,7 +11,7 @@ from core.views import HonorCodeFormView, ParticipantListView, ParticipantUpdate
 
 urlpatterns = [
 
-    url('', include('social.apps.django_app.urls')),
+   # url('', include('social.apps.django_app.urls')),
     url('', include('django.contrib.auth.urls')),
 	url(r'^$', HomeView.as_view(), name='home'),
     url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS

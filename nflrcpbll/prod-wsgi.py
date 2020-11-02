@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/1.7/howto/deployment/wsgi/
 
 import os, sys
 # 
-sys.path.insert(0, '/pythonweb/nflrc-pbll-dev/')
+sys.path.insert(0, '/pythonapps/nflrc-pbll-dev/')
 # 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "nflrcpbll.settings.prod-nflrcpbll-hawaii-edu")
 

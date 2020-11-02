@@ -21,7 +21,7 @@ class HomeView(TemplateView):
         context = super(HomeView, self).get_context_data(**kwargs)
         projects = Project.objects.all()
         context['public_projects'] = projects.filter(public=True)
-        if self.request.user.is_authenticated():
+        if self.request.user.is_authenticated:
             if self.request.user.is_staff:
                 context['member_projects'] = projects.filter(public=False)
             else:
